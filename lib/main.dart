@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'Login.dart';
 import 'package:flutter/material.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'Home.dart';
 void main() => runApp(MaterialApp(home:Splash(),debugShowCheckedModeBanner: false,));
 
 class Splash extends StatefulWidget {
@@ -11,11 +12,31 @@ class Splash extends StatefulWidget {
 }
 
 class _SplashState extends State<Splash> {
+  SharedPreferences preferences;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    Timer(Duration(milliseconds: 2000),()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>new Login())));
+    Timer(Duration(milliseconds: 2000),getPrefs);
+  }
+  Future getPrefs() async
+  {
+    preferences=await SharedPreferences.getInstance();
+
+    if(preferences.getString("user")==null)
+    {
+      preferences.setBool("firstsignin", true);
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>new Login()));
+    }
+    else
+    {
+      if(preferences.getKeys().contains("firstsignin"))
+        {
+          preferences.remove("firstsignin");
+        }
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>new Home()));
+
+    }
   }
   @override
   Widget build(BuildContext context) {

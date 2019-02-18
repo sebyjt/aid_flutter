@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
+import 'Home.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -10,23 +11,32 @@ class Login extends StatefulWidget {
 
 class _LoginState extends State<Login> {
   TextEditingController username,password;
+  GlobalKey<ScaffoldState> key=new GlobalKey();
+  SharedPreferences preferences;
   @override
-  void initState() {
+  void initState()  {
     // TODO: implement initState
+    getPrefs();
+
     super.initState();
     username=new TextEditingController();
     password=new TextEditingController();
 
   }
+Future getPrefs() async {
+    preferences=await SharedPreferences.getInstance();
+}
   Future login() async{
     var data={"username":username.text,"password":password.text};
     var response = await post("https://6ghfrrqsb3.execute-api.ap-south-1.amazonaws.com/Dev/login",json.encode(data));
     print(response);
     if(response["message"]=="Success")
     {
-
+      preferences.setString("user", response["type"]);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>new Home()));
     }
     else{
+      key.currentState.showSnackBar(new SnackBar(content: new Text("wrong credentials"),backgroundColor: Colors.green, ));
       print("error");
     }
   }
@@ -38,6 +48,7 @@ class _LoginState extends State<Login> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      key: key,
         body: Container(
           height: double.infinity,
           width: double.infinity,
