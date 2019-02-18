@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "597494423061",
+    "firebase_url": "https://aidapp-83c4e.firebaseio.com",
+    "project_id": "aidapp-83c4e",
+    "storage_bucket": "aidapp-83c4e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:597494423061:android:6e728ae5e9f0eb94",
+        "android_client_info": {
+          "package_name": "iodev.in.aidflutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "597494423061-oab8jh180nj44e8s71sarb7h3l5qjahv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "iodev.in.aidflutter",
+            "certificate_hash": "59f4539a9ca1225af38145d0e422bc76c264c0d4"
+          }
+        },
+        {
+          "client_id": "597494423061-66c84ee52od2foicgt54hb8ulhait751.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYTvVXga3w2LoAh6Qc2U5wegKgC2euERA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "597494423061-66c84ee52od2foicgt54hb8ulhait751.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
